@@ -19,7 +19,7 @@ job('crawl-job') {
             cd ${LINK_TREE_PRJ_DIR}
             
             keywords_json=\$(echo '\$keywords' | jq -R 'split(",")' -c)
-            echo "keywords_json := $keywords_json"
+            echo "keywords_json := \$keywords_json"
             echo "\$JASYPT_PASSWORD"
             echo "\$DB_URL"
             echo "\$DB_USERNAME"
