@@ -1,7 +1,7 @@
 job('crawl-job') {
     description('crwal')
     parameters {
-        stringParam('keywords', '', 'keywords for crawl')
+        stringParam('KEYWORDS', '', 'keywords for crawl')
     }
     scm {}
     triggers {}
@@ -18,8 +18,8 @@ job('crawl-job') {
             echo "Project Dir := [${LINK_TREE_PRJ_DIR}]"
             cd ${LINK_TREE_PRJ_DIR}
             
-            keywords_json=\$(echo '\$keywords' | jq -R 'split(",")' -c)
-            echo "keywords_json := \$keywords_json"
+            KEYWORDS_JSON=\$(echo "\$KEYWORDS" | jq -R 'split(",")' -c)
+            echo "keywords_json := \$KEYWORDS_JSON"
             echo "\$JASYPT_PASSWORD"
             echo "\$DB_URL"
             echo "\$DB_USERNAME"
