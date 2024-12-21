@@ -6,7 +6,7 @@ job('build-link-tree-job') {
         shell("""
             echo "Project Dir := [${LINK_TREE_PRJ_DIR}]"
             cd ${LINK_TREE_PRJ_DIR}
-            ./gradlew bootJar
+            ./gradlew clean bootJar
         """)
     }
 }
