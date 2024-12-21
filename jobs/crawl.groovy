@@ -26,7 +26,7 @@ job('crawl-job') {
             echo "\$DB_USERNAME"
             echo "\$DB_DRIVER_CLASS_NAME"
 
-            /Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home/bin/java -jar build/libs/*.jar \
+            ${JAVA_HOME}/bin/java -jar build/libs/*.jar \
             --spring.batch.job.name=crawlJob \
             --jasypt.encryptor.password=\$JASYPT_PASSWORD \
             --spring.datasource.url=\$DB_URL \
