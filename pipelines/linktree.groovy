@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        choice('ORDER_TYPE', ['STANDARD', 'DELUXE', 'PREMIUM'], 'type of order')
+        choiceParam('ORDER_TYPE', ['STANDARD', 'DELUXE', 'PREMIUM'], 'type of order')
         stringParam('TARGET_URL', '', 'target url')
         stringParam('CUSTOMER_NAME', '', 'customer name')
         stringParam('ANCHOR_TEXTS', '', 'anchor texts for link')
