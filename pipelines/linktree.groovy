@@ -17,11 +17,6 @@ pipeline {
     stages {
         stage('Build Link Tree Batch Application') {
             steps {
-                script {
-                    slackSend channel: env.SLACK_CHANNEL, 
-                              message: "[Jenkins] Started to build Link Tree Application",
-                              tokenCredentialId: env.SLACK_CREDENTIALS_ID
-                }
                 build job: '01-Build-Link-Tree',
                     parameters: [],
                     wait: true,
