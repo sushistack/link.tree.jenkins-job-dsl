@@ -1,8 +1,5 @@
-job('02-Crawl') {
-    description('crwal')
-    parameters {
-        stringParam('KEYWORDS', '', 'crawled keywords')
-    }
+job('05-Validate-Links') {
+    description('validate links for order')
     wrappers {
         credentialsBinding {
             string('JASYPT_PASSWORD', 'jasypt-encryptor-password')
@@ -15,17 +12,14 @@ job('02-Crawl') {
     steps {
         shell("""
             cd ${LINK_TREE_PRJ_DIR}
-            
-            KEYWORDS_JSON=\$(echo "\$KEYWORDS" | jq -R 'split(",")' -c)
 
             ${JAVA_HOME}/bin/java -jar build/libs/*.jar \
-            --spring.batch.job.name=crawlJob \
+            --spring.batch.job.name=linkValidationJob \
             --jasypt.encryptor.password=\$JASYPT_PASSWORD \
             --spring.datasource.url=\$DB_URL \
             --spring.datasource.username=\$DB_USERNAME \
             --spring.datasource.password=\$DB_PASSWORD \
-            --spring.datasource.driver-class-name=\$DB_DRIVER_CLASS_NAME \
-            keywords=\$KEYWORDS_JSON
+            --spring.datasource.driver-class-name=\$DB_DRIVER_CLASS_NAME
         """)
     }
 }

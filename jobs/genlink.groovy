@@ -7,8 +7,6 @@ job('03-Generate-Links') {
         stringParam('ANCHOR_TEXTS', '', 'anchor texts for link')
         stringParam('KEYWORDS', '', 'crawled keywords')
     }
-    scm {}
-    triggers {}
     wrappers {
         credentialsBinding {
             string('JASYPT_PASSWORD', 'jasypt-encryptor-password')
@@ -20,23 +18,22 @@ job('03-Generate-Links') {
     }
     steps {
         shell("""
-            echo "Project Dir := [${LINK_TREE_PRJ_DIR}]"
             cd ${LINK_TREE_PRJ_DIR}
             
-            KEYWORDS_JSON=\$(echo "\$KEYWORDS" | jq -R 'split(",")' -c)
             ANCHOR_TEXTS_JSON=\$(echo "\$ANCHOR_TEXTS" | jq -R 'split(",")' -c)
+            KEYWORDS_JSON=\$(echo "\$KEYWORDS" | jq -R 'split(",")' -c)
 
             ${JAVA_HOME}/bin/java -jar build/libs/*.jar \
-            --spring.batch.job.name=crawlJob \
+            --spring.batch.job.name=linkGenerationJob \
             --jasypt.encryptor.password=\$JASYPT_PASSWORD \
             --spring.datasource.url=\$DB_URL \
             --spring.datasource.username=\$DB_USERNAME \
             --spring.datasource.password=\$DB_PASSWORD \
             --spring.datasource.driver-class-name=\$DB_DRIVER_CLASS_NAME \
-            orderType=\$ORDER_TYPE  \
-            targetUrl=\$TARGET_URL  \
-            customerName=\$CUSTOMER_NAME  \
-            anchorTexts=\$ANCHOR_TEXTS_JSON  \
+            orderType=\$ORDER_TYPE \
+            targetUrl=\$TARGET_URL \
+            customerName=\$CUSTOMER_NAME \
+            anchorTexts=\$ANCHOR_TEXTS_JSON \
             keywords=\$KEYWORDS_JSON
         """)
     }
