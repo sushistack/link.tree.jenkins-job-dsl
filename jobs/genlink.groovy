@@ -1,7 +1,7 @@
 job('03-Generate-Links') {
     description('generate links for order')
     parameters {
-        stringParam('ORDER_TYPE', 'DELUXE', 'order type (ex. STANDARD, DELUXE, PREMIUM)')
+        choice('ORDER_TYPE', ['STANDARD', 'DELUXE', 'PREMIUM'], 'type of order')
         stringParam('TARGET_URL', '', 'target url')
         stringParam('CUSTOMER_NAME', '', 'customer name')
         stringParam('ANCHOR_TEXTS', '', 'anchor texts for link')
