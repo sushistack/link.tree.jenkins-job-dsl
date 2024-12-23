@@ -56,10 +56,10 @@ pipeline {
         steps {
             build job: '03-Generate-Links',
                 parameters: [
-                    string(name: 'ORDER_TYPE', value: "${params.ORDER_TYPE}")
-                    string(name: 'TARGET_URL', value: "${params.TARGET_URL}")
-                    string(name: 'CUSTOMER_NAME', value: "${params.CUSTOMER_NAME}")
-                    string(name: 'ANCHOR_TEXTS', value: "${params.ANCHOR_TEXTS}")
+                    string(name: 'ORDER_TYPE', value: "${params.ORDER_TYPE}"),
+                    string(name: 'TARGET_URL', value: "${params.TARGET_URL}"),
+                    string(name: 'CUSTOMER_NAME', value: "${params.CUSTOMER_NAME}"),
+                    string(name: 'ANCHOR_TEXTS', value: "${params.ANCHOR_TEXTS}"),
                     string(name: 'KEYWORDS', value: "${params.KEYWORDS}")
                 ], 
                 wait: true, 
