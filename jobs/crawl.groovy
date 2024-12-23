@@ -1,4 +1,4 @@
-job('02-crawl-job') {
+job('02-Crawl') {
     description('crwal')
     parameters {
         stringParam('KEYWORDS', '', 'keywords for crawl')
