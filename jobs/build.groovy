@@ -1,4 +1,4 @@
-job('build-link-tree-job') {
+job('01-build-link-tree-job') {
     description('build link tree project')
     scm {}
     triggers {}
