@@ -20,7 +20,7 @@ pipeline {
                 build job: '01-Build-Link-Tree',
                     parameters: [],
                     wait: true,
-                    propagate: false
+                    propagate: true
             }
             post {
                 success {
@@ -39,7 +39,7 @@ pipeline {
                         string(name: 'KEYWORDS', value: "${params.KEYWORDS}")
                     ], 
                     wait: true, 
-                    propagate: false
+                    propagate: true
             }
             post {
                 success {
@@ -62,7 +62,7 @@ pipeline {
                         string(name: 'KEYWORDS', value: "${params.KEYWORDS}")
                     ], 
                     wait: true, 
-                    propagate: false
+                    propagate: true
             }
             post {
                 success {
@@ -79,7 +79,7 @@ pipeline {
                 build job: '04-Deploy-Posts',
                     parameters: [], 
                     wait: true, 
-                    propagate: false
+                    propagate: true
             }
             post {
                 success {
@@ -96,7 +96,7 @@ pipeline {
                 build job: '05-Validate-Links',
                     parameters: [], 
                     wait: true, 
-                    propagate: false
+                    propagate: true
             }
             post {
                 success {
