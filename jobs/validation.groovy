@@ -12,6 +12,7 @@ job('05-Validate-Links') {
     steps {
         shell("""
             cd ${LINK_TREE_PRJ_DIR}
+            TIMESTAMP=\$(date +"%Y%m%d%H%M%S")
 
             ${JAVA_HOME}/bin/java -jar build/libs/*.jar \
             --spring.batch.job.name=linkValidationJob \
@@ -19,7 +20,8 @@ job('05-Validate-Links') {
             --spring.datasource.url=\$DB_URL \
             --spring.datasource.username=\$DB_USERNAME \
             --spring.datasource.password=\$DB_PASSWORD \
-            --spring.datasource.driver-class-name=\$DB_DRIVER_CLASS_NAME
+            --spring.datasource.driver-class-name=\$DB_DRIVER_CLASS_NAME \
+            timestamp=\$TIMESTAMP
         """)
     }
 }

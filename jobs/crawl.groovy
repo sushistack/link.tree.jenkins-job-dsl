@@ -17,6 +17,7 @@ job('02-Crawl') {
             cd ${LINK_TREE_PRJ_DIR}
             
             KEYWORDS_JSON=\$(echo "\$KEYWORDS" | jq -R 'split(",")' -c)
+            TIMESTAMP=\$(date +"%Y%m%d%H%M%S")
 
             ${JAVA_HOME}/bin/java -jar build/libs/*.jar \
             --spring.batch.job.name=crawlJob \
@@ -25,7 +26,8 @@ job('02-Crawl') {
             --spring.datasource.username=\$DB_USERNAME \
             --spring.datasource.password=\$DB_PASSWORD \
             --spring.datasource.driver-class-name=\$DB_DRIVER_CLASS_NAME \
-            keywords=\$KEYWORDS_JSON
+            keywords=\$KEYWORDS_JSON \
+            timestamp=\$TIMESTAMP
         """)
     }
 }
