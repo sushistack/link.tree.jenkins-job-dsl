@@ -24,10 +24,10 @@ pipeline {
             }
             post {
                 success {
-                    slackSend channel: env.SLACK_CHANNEL, message: "Succeeded in build Link Tree Application", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "Good" channel: env.SLACK_CHANNEL, message: "Succeeded in build Link Tree Application", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 }
                 failure {
-                    slackSend channel: env.SLACK_CHANNEL, message: "Failed to build Link Tree Application", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "danger" channel: env.SLACK_CHANNEL, message: "Failed to build Link Tree Application", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                     error("Link Tree Application Build failed")
                 }
             }
@@ -43,10 +43,10 @@ pipeline {
             }
             post {
                 success {
-                    slackSend channel: env.SLACK_CHANNEL, message: "Succeeded in crawl", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "Good" channel: env.SLACK_CHANNEL, message: "Succeeded in crawl", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 }
                 failure {
-                    slackSend channel: env.SLACK_CHANNEL, message: "Failed to crawl", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "danger" channel: env.SLACK_CHANNEL, message: "Failed to crawl", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                     error("Crawl Job failed")
                 }
             }
@@ -66,10 +66,10 @@ pipeline {
             }
             post {
                 success {
-                    slackSend channel: env.SLACK_CHANNEL, message: "Succeeded in generating links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "Good" channel: env.SLACK_CHANNEL, message: "Succeeded in generating links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 }
                 failure {
-                    slackSend channel: env.SLACK_CHANNEL, message: "Failed to generate links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "danger" channel: env.SLACK_CHANNEL, message: "Failed to generate links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                     error("Link generating failed")
                 }
             }
@@ -83,10 +83,10 @@ pipeline {
             }
             post {
                 success {
-                    slackSend channel: env.SLACK_CHANNEL, message: "Succeeded in deploying posts", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "Good" channel: env.SLACK_CHANNEL, message: "Succeeded in deploying posts", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 }
                 failure {
-                    slackSend channel: env.SLACK_CHANNEL, message: "Failed to deploy posts", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "danger" channel: env.SLACK_CHANNEL, message: "Failed to deploy posts", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                     error("Deploying posts failed")
                 }
             }
@@ -100,10 +100,10 @@ pipeline {
             }
             post {
                 success {
-                    slackSend channel: env.SLACK_CHANNEL, message: "Succeeded in validating links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "Good" channel: env.SLACK_CHANNEL, message: "Succeeded in validating links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 }
                 failure {
-                    slackSend channel: env.SLACK_CHANNEL, message: "Failed to validate links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "danger" channel: env.SLACK_CHANNEL, message: "Failed to validate links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                     error("Validating Link failed")
                 }
             }
