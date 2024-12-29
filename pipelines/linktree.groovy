@@ -3,10 +3,10 @@ pipeline {
 
     parameters {
         choice(name: 'ORDER_TYPE', choices: ['STANDARD', 'DELUXE', 'PREMIUM'], description: 'type of order')
-        string(name: 'TARGET_URL', defaultValue: '', description: 'target url')
-        string(name: 'CUSTOMER_NAME', defaultValue: '', description: 'customer name')
-        string(name: 'ANCHOR_TEXTS', defaultValue: '', description: 'anchor texts for link')
-        string(name: 'KEYWORDS', defaultValue: '', description: 'crawled keywords')
+        string(name: 'TARGET_URL', defaultValue: 'https://test.com', description: 'target url')
+        string(name: 'CUSTOMER_NAME', defaultValue: '고객명', description: 'customer name')
+        string(name: 'ANCHOR_TEXTS', defaultValue: '딸기', description: 'anchor texts for link')
+        string(name: 'KEYWORDS', defaultValue: '딸기', description: 'crawled keywords')
     }
 
     environment {
