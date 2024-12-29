@@ -11,6 +11,10 @@ job('04-Deploy-Posts') {
     }
     steps {
         shell("""
+            eval "$(${RB_ENV_PATH} init -)"
+            rbenv global 3.1.4
+            ruby --version
+
             cd ${LINK_TREE_PRJ_DIR}
             TIMESTAMP=\$(date +"%Y%m%d%H%M%S")
 
