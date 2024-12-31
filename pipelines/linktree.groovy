@@ -21,8 +21,8 @@ pipeline {
             }
         }
         stage('Build Link Tree Batch Application') {
-            slackSend channel: env.SLACK_CHANNEL, message: "1. Started to build Link Tree Application :gear:", tokenCredentialId: env.SLACK_CREDENTIALS_ID
             steps {
+                slackSend channel: env.SLACK_CHANNEL, message: "1. Started to build Link Tree Application :gear:", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 build job: '01-Build-Link-Tree',
                     parameters: [],
                     wait: true,
