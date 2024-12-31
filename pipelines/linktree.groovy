@@ -15,7 +15,13 @@ pipeline {
     }
 
     stages {
+        stage('Start Notification') {
+            steps {
+                slackSend channel: env.SLACK_CHANNEL, message: "Started to build Link Tree :rocket:", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+            }
+        }
         stage('Build Link Tree Batch Application') {
+            slackSend channel: env.SLACK_CHANNEL, message: "1. Started to build Link Tree Application :gear:", tokenCredentialId: env.SLACK_CREDENTIALS_ID
             steps {
                 build job: '01-Build-Link-Tree',
                     parameters: [],
@@ -24,16 +30,17 @@ pipeline {
             }
             post {
                 success {
-                    slackSend color: "good", channel: env.SLACK_CHANNEL, message: "Succeeded in build Link Tree Application", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "good", channel: env.SLACK_CHANNEL, message: "Succeeded in Build", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 }
                 failure {
-                    slackSend color: "danger", channel: env.SLACK_CHANNEL, message: "Failed to build Link Tree Application", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "danger", channel: env.SLACK_CHANNEL, message: "Failed to Build", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                     error("Link Tree Application Build failed")
                 }
             }
         }
         stage('Crawl') {
             steps {
+                slackSend channel: env.SLACK_CHANNEL, message: "2. Started to Crawl :spider:", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 build job: '02-Crawl',
                     parameters: [
                         string(name: 'KEYWORDS', value: "${params.KEYWORDS}")
@@ -43,16 +50,17 @@ pipeline {
             }
             post {
                 success {
-                    slackSend color: "good", channel: env.SLACK_CHANNEL, message: "Succeeded in crawl", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "good", channel: env.SLACK_CHANNEL, message: "Succeeded in Crawl", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 }
                 failure {
-                    slackSend color: "danger", channel: env.SLACK_CHANNEL, message: "Failed to crawl", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "danger", channel: env.SLACK_CHANNEL, message: "Failed to Crawl", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                     error("Crawl Job failed")
                 }
             }
         }
         stage('Generate Links') {
             steps {
+                slackSend channel: env.SLACK_CHANNEL, message: "3. Started to Generate Links :link:", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 build job: '03-Generate-Links',
                     parameters: [
                         string(name: 'ORDER_TYPE', value: "${params.ORDER_TYPE}"),
@@ -66,16 +74,17 @@ pipeline {
             }
             post {
                 success {
-                    slackSend color: "good", channel: env.SLACK_CHANNEL, message: "Succeeded in generating links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "good", channel: env.SLACK_CHANNEL, message: "Succeeded in Generating Links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 }
                 failure {
-                    slackSend color: "danger", channel: env.SLACK_CHANNEL, message: "Failed to generate links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "danger", channel: env.SLACK_CHANNEL, message: "Failed to Generate Links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                     error("Link generating failed")
                 }
             }
         }
         stage('Deploy Posts') {
             steps {
+                slackSend channel: env.SLACK_CHANNEL, message: "4. Started to Deploy Posts :rocket:", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 build job: '04-Deploy-Posts',
                     parameters: [], 
                     wait: true, 
@@ -83,16 +92,17 @@ pipeline {
             }
             post {
                 success {
-                    slackSend color: "good", channel: env.SLACK_CHANNEL, message: "Succeeded in deploying posts", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "good", channel: env.SLACK_CHANNEL, message: "Succeeded in Deploying Posts", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 }
                 failure {
-                    slackSend color: "danger", channel: env.SLACK_CHANNEL, message: "Failed to deploy posts", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "danger", channel: env.SLACK_CHANNEL, message: "Failed to Deploy Posts", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                     error("Deploying posts failed")
                 }
             }
         }
         stage('Validate Links') {
             steps {
+                slackSend channel: env.SLACK_CHANNEL, message: "5. Started to Validate Links :link:", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 build job: '05-Validate-Links',
                     parameters: [], 
                     wait: true, 
@@ -100,12 +110,17 @@ pipeline {
             }
             post {
                 success {
-                    slackSend color: "good", channel: env.SLACK_CHANNEL, message: "Succeeded in validating links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "good", channel: env.SLACK_CHANNEL, message: "Succeeded in Validating Links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                 }
                 failure {
-                    slackSend color: "danger", channel: env.SLACK_CHANNEL, message: "Failed to validate links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                    slackSend color: "danger", channel: env.SLACK_CHANNEL, message: "Failed to Validate Links", tokenCredentialId: env.SLACK_CREDENTIALS_ID
                     error("Validating Link failed")
                 }
+            }
+        }
+        stage('End Notification') {
+            steps {
+                slackSend channel: env.SLACK_CHANNEL, message: "Finished to build Link Tree :check_mark_button:", tokenCredentialId: env.SLACK_CREDENTIALS_ID
             }
         }
     }
