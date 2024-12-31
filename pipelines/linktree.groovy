@@ -120,7 +120,7 @@ pipeline {
         }
         stage('End Notification') {
             steps {
-                slackSend channel: env.SLACK_CHANNEL, message: "Finished to build Link Tree :chequered_flag:", tokenCredentialId: env.SLACK_CREDENTIALS_ID
+                slackSend channel: env.SLACK_CHANNEL, message: "Finished to build Link Tree :checkered_flag:", tokenCredentialId: env.SLACK_CREDENTIALS_ID
             }
         }
     }
