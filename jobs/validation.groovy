@@ -15,6 +15,7 @@ job('05-Validate-Links') {
             TIMESTAMP=\$(date +"%Y%m%d%H%M%S")
 
             ${JAVA_HOME}/bin/java -jar build/libs/*.jar \
+            --spring.profiles.active=prod \
             --spring.batch.job.name=linkValidationJob \
             --jasypt.encryptor.password=\$JASYPT_PASSWORD \
             --spring.datasource.url=\$DB_URL \

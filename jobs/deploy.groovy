@@ -19,6 +19,7 @@ job('04-Deploy-Posts') {
             TIMESTAMP=\$(date +"%Y%m%d%H%M%S")
 
             ${JAVA_HOME}/bin/java -jar build/libs/*.jar \
+            --spring.profiles.active=prod \
             --spring.batch.job.name=postDeployJob \
             --jasypt.encryptor.password=\$JASYPT_PASSWORD \
             --spring.datasource.url=\$DB_URL \

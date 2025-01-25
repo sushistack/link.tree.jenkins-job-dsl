@@ -6,6 +6,7 @@ job('03-Generate-Links') {
         stringParam('CUSTOMER_NAME', '', 'customer name')
         stringParam('ANCHOR_TEXTS', '', 'anchor texts for link')
         stringParam('KEYWORDS', '', 'crawled keywords')
+        stringParam('PROFILE', 'prod', 'active profiles')
     }
     wrappers {
         credentialsBinding {
@@ -24,6 +25,7 @@ job('03-Generate-Links') {
             KEYWORDS_JSON=\$(echo "\$KEYWORDS" | jq -R 'split(",")' -c)
 
             ${JAVA_HOME}/bin/java -jar build/libs/*.jar \
+            --spring.profiles.active=\$PROFILE \
             --spring.batch.job.name=linkGenerationJob \
             --jasypt.encryptor.password=\$JASYPT_PASSWORD \
             --spring.datasource.url=\$DB_URL \

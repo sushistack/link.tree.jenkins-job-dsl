@@ -7,6 +7,7 @@ pipeline {
         string(name: 'CUSTOMER_NAME', defaultValue: '고객명', description: 'customer name')
         string(name: 'ANCHOR_TEXTS', defaultValue: '딸기', description: 'anchor texts for link')
         string(name: 'KEYWORDS', defaultValue: '딸기', description: 'crawled keywords')
+        string(name: 'PROFILE', defaultValue: 'prod', description: 'active profile')
     }
 
     environment {
@@ -67,7 +68,8 @@ pipeline {
                         string(name: 'TARGET_URL', value: "${params.TARGET_URL}"),
                         string(name: 'CUSTOMER_NAME', value: "${params.CUSTOMER_NAME}"),
                         string(name: 'ANCHOR_TEXTS', value: "${params.ANCHOR_TEXTS}"),
-                        string(name: 'KEYWORDS', value: "${params.KEYWORDS}")
+                        string(name: 'KEYWORDS', value: "${params.KEYWORDS}"),
+                        string(name: 'PROFILE', value: "${params.PROFILE}")
                     ], 
                     wait: true, 
                     propagate: true
