@@ -36,7 +36,7 @@ job('03-Generate-Links') {
             targetUrl=\$TARGET_URL \
             customerName=\$CUSTOMER_NAME \
             anchorTexts=\$ANCHOR_TEXTS_JSON \
-            keywords=\$KEYWORDS_JSON
+            keywords="\$KEYWORDS_JSON"
         """)
     }
 }
