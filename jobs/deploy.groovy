@@ -25,8 +25,7 @@ job('04-Deploy-Posts') {
             --spring.datasource.url=\$DB_URL \
             --spring.datasource.username=\$DB_USERNAME \
             --spring.datasource.password=\$DB_PASSWORD \
-            --spring.datasource.driver-class-name=\$DB_DRIVER_CLASS_NAME \
-            timestamp=\$TIMESTAMP
+            --spring.datasource.driver-class-name=\$DB_DRIVER_CLASS_NAME
         """)
     }
 }

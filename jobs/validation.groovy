@@ -1,5 +1,8 @@
 job('05-Validate-Links') {
     description('validate links for order')
+    parameters {
+        stringParam('ORDER_SEQ', '', 'orderSeq')
+    }
     wrappers {
         credentialsBinding {
             string('JASYPT_PASSWORD', 'jasypt-encryptor-password')
@@ -22,7 +25,7 @@ job('05-Validate-Links') {
             --spring.datasource.username=\$DB_USERNAME \
             --spring.datasource.password=\$DB_PASSWORD \
             --spring.datasource.driver-class-name=\$DB_DRIVER_CLASS_NAME \
-            timestamp=\$TIMESTAMP
+            orderSeq="\$ORDER_SEQ"
         """)
     }
 }
