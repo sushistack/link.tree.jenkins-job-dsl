@@ -1,5 +1,9 @@
 job('04-Deploy-Posts') {
     description('deploy posts')
+    parameters {
+        stringParam('ORDER_SEQ', '', 'orderSeq')
+        booleanParam('SKIP_CBN', false, 'skip cbn')
+    }
     wrappers {
         credentialsBinding {
             string('JASYPT_PASSWORD', 'jasypt-encryptor-password')
@@ -25,7 +29,8 @@ job('04-Deploy-Posts') {
             --spring.datasource.url=\$DB_URL \
             --spring.datasource.username=\$DB_USERNAME \
             --spring.datasource.password=\$DB_PASSWORD \
-            --spring.datasource.driver-class-name=\$DB_DRIVER_CLASS_NAME
+            --spring.datasource.driver-class-name=\$DB_DRIVER_CLASS_NAME \
+            orderSeq="\$ORDER_SEQ"
         """)
     }
 }
